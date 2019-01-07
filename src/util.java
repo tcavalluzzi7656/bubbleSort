@@ -21,12 +21,14 @@ public class util {
         {
             swapcount=0;
             pos=0;
-            for(int x=0;x<arr.length;x++)
+            int lastswap=arr.length-1;
+            for(int x=0;x<lastswap;x++)
             {
                 if(arr[pos]>arr[pos+1])
                 {
-                    swap(arr,arr[pos],arr[pos+1]);
+                    swap(arr,pos,pos+1);
                     swapcount++;
+                    lastswap=pos+1;
                 }
                 pos++;
             }
@@ -46,5 +48,39 @@ public class util {
             arr[x]=(int)(Math.random()*10001);
         }
         return arr;
+    }
+
+
+    public static boolean checkSum(int[] before,int[] after)
+    {
+        int sumBefore=0;
+        int sumAfter=0;
+        if(before.length!=after.length)
+        {
+            return false;
+        }
+        for(int x=0; x<before.length;x++)
+        {
+            sumBefore= sumBefore+before[x];
+            sumAfter= sumAfter+after[x];
+        }
+        if (sumAfter==sumBefore)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkOrder(int[] arr)
+    {
+        boolean correct = true;
+        for (int pos = 0; pos<arr.length-1;pos++)
+        {
+            if(!(arr[pos]<=arr[pos+1]))
+            {
+                correct=false;
+            }
+        }
+        return correct;
     }
 }
